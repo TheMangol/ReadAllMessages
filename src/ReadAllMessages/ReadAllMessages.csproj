@@ -1,0 +1,104 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- ======================================================================
+       ReadAllMessages — мод для Schedule I (MelonLoader)
+       Перед сборкой укажи путь к игре в GamePath ниже!
+       Сборка:
+         dotnet build -c Il2Cpp   (обычная ветка Steam, по умолчанию)
+         dotnet build -c Mono     (ветка "alternate")
+       ====================================================================== -->
+
+  <PropertyGroup>
+    <!-- ПУТЬ К ИГРЕ: поменяй, если игра установлена в другом месте -->
+    <GamePath>C:\Program Files (x86)\Steam\steamapps\common\Schedule I</GamePath>
+
+    <AssemblyName>ReadAllMessages</AssemblyName>
+    <RootNamespace>ReadAllMessages</RootNamespace>
+    <Version>1.0.0</Version>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Configurations>Il2Cpp;Mono</Configurations>
+    <Configuration Condition="'$(Configuration)' == ''">Il2Cpp</Configuration>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <!-- ===================== Il2Cpp (основная ветка) ===================== -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Il2Cpp'">
+    <TargetFramework>net6.0</TargetFramework>
+    <DefineConstants>IL2CPP</DefineConstants>
+    <MLDir>$(GamePath)\MelonLoader\net6</MLDir>
+    <ProxyDir>$(GamePath)\MelonLoader\Il2CppAssemblies</ProxyDir>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Il2Cpp'">
+    <Reference Include="MelonLoader">
+      <HintPath>$(MLDir)\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(MLDir)\Il2CppInterop.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(ProxyDir)\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(ProxyDir)\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ProxyDir)\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(ProxyDir)\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(ProxyDir)\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(ProxyDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(ProxyDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <!-- ===================== Mono (ветка alternate) ===================== -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Mono'">
+    <TargetFramework>net472</TargetFramework>
+    <DefineConstants>MONO</DefineConstants>
+    <MLDir>$(GamePath)\MelonLoader\net35</MLDir>
+    <ManagedDir>$(GamePath)\Schedule I_Data\Managed</ManagedDir>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Mono'">
+    <Reference Include="MelonLoader">
+      <HintPath>$(MLDir)\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(ManagedDir)\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(ManagedDir)\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(ManagedDir)\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(ManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(ManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Автокопирование собранного мода в папку Mods игры (если она есть) -->
+  <Target Name="CopyToMods" AfterTargets="Build" Condition="Exists('$(GamePath)\Mods')">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GamePath)\Mods" />
+    <Message Text="ReadAllMessages.dll скопирован в $(GamePath)\Mods" Importance="high" />
+  </Target>
+
+</Project>
