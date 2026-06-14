@@ -67,6 +67,12 @@ You only need the **.NET SDK 6.0** (or newer) — plus a MelonLoader-patched cop
 - Read state is stored in your save like normal. No files outside the game are touched.
 - One source, two branches: game types are referenced as `ScheduleOne.*` (Mono) and `Il2CppScheduleOne.*` (IL2CPP), selected at compile time.
 
+## License
+
+Copyright (C) 2026 Mangol. Released under the **[GNU General Public License v3.0](LICENSE)**.
+
+You are free to use, study, share, and modify this mod. Any distributed version built on this code must stay open-source under the GPL and keep the original author credit.
+
 ## Credits
 
 Made by **Mangol**.
