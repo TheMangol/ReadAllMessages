@@ -15,6 +15,15 @@
     <AssemblyName>ReadAllMessages</AssemblyName>
     <RootNamespace>ReadAllMessages</RootNamespace>
     <Version>1.0.0</Version>
+
+    <!-- Authorship / copyright (embedded into the built assembly) -->
+    <Authors>Mangol</Authors>
+    <Company>Mangol</Company>
+    <Product>ReadAllMessages</Product>
+    <Description>Adds a "Read All" button to the phone Messages app in Schedule I.</Description>
+    <Copyright>Copyright (C) 2026 Mangol. Licensed under the GNU General Public License v3.0.</Copyright>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/TheMangol/ReadAllMessages</RepositoryUrl>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
@@ -24,6 +33,13 @@
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
     <DebugType>none</DebugType>
   </PropertyGroup>
+
+  <!-- Embedded authorship marker (provable origin in a built/decompiled DLL) -->
+  <ItemGroup>
+    <AssemblyMetadata Include="OriginalAuthor" Value="Mangol (https://github.com/TheMangol)" />
+    <AssemblyMetadata Include="SourceRepository" Value="https://github.com/TheMangol/ReadAllMessages" />
+    <AssemblyMetadata Include="License" Value="GPL-3.0-only" />
+  </ItemGroup>
 
   <!-- ===================== Il2Cpp (основная ветка) ===================== -->
   <PropertyGroup Condition="'$(Configuration)' == 'Il2Cpp'">
