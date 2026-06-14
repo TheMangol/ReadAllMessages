@@ -1,6 +1,6 @@
 # ReadAllMessages
 
-*Read this in other languages: [Русский](README.ru.md)*
+*На других языках: [Русский](README.ru.md)*
 
 A tiny quality-of-life mod for **Schedule I** that adds a **"Read All"** button to the Messages app on your phone. One click marks every conversation as read and clears the unread notification badge. That's it — no gameplay changes, no automation, nothing else.
 
